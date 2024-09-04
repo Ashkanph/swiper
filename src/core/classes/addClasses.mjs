@@ -16,7 +16,7 @@ function prepareClasses(entries, prefix) {
 
 export default function addClasses() {
   const swiper = this;
-  const { classNames, params, rtl, el, device } = swiper;
+  const { classNames, params, rtl, el, isElement, hostEl, device } = swiper;
   // prettier-ignore
   const suffixes = prepareClasses([
     'initialized',
@@ -34,5 +34,8 @@ export default function addClasses() {
   ], params.containerModifierClass);
   classNames.push(...suffixes);
   el.classList.add(...classNames);
+  if (isElement) {
+    hostEl.classList.add(...classNames);
+  }
   swiper.emitContainerClasses();
 }
